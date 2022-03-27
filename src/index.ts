@@ -1,8 +1,8 @@
-import mainRoutes from './routes/main.routes';
+import medianRoutes from './routes/median.routes';
 import { Router } from 'express';
 
 const routes = Router();
-// use main routes with url /main
-routes.use('/',  mainRoutes);
+// use median routes with url /median
+routes.use('/',  medianRoutes);
   
 export default routes

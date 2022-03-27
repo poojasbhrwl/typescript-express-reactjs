@@ -4,32 +4,60 @@ import {Component} from "react";
 
 class App extends Component {
   state = {
-    response: ''
+    number: '',
+    oldNumber: '',
+    response: '',
+    error: {}
   };
 
-  componentDidMount() {
-    this.callApi()
-      .then(res => { this.setState({ response: res.message }) })
-      .catch(err => console.log(err));
+  getResult = async() => {
+    let res = await this.callApi()
+    if(res.status == 200)
+    this.setState({ response: res.medianData.join(), oldNumber: this.state.number,number: '' })
+    else
+      this.setState({ error: res.error,response: '' });
+  }
+
+  setNumber = (event) => {
+    this.setState({...this.state,
+      error: {},
+      number: event.target.value})
   }
 
   callApi = async () => {
-    const response = await fetch('/api');
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ number: this.state.number })
+  };
+    const response = await fetch('/api',requestOptions);
     const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-
     return body;
   };
 
   render() {
+    let error = this.state.error
+    console.log(error)
+      
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome</h1>
         </header>
-        <p className="App-intro" >{this.state.response}</p>
+        <div>
+          <input type="number" onChange={this.setNumber} value={this.state.number}></input>
+          {
+            error.details && error.details.map((val) => {
+              return <p className='error'>{val.message}</p>
+            })
+          }
+          <button onClick={this.getResult}>Enter</button>
+          {
+            this.state.response && 
+            <p className='result'>Hi, median(s) of prime numbers of 0-{this.state.oldNumber} = {this.state.response}</p>
+          }
+        </div>
+        {/* <p className="App-intro" >{this.state.response}</p> */}
       </div>
     );
   }

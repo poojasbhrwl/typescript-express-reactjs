@@ -1,11 +1,11 @@
 import Joi from "joi"
 
 class MedianValidation {
-    public medianValidation = (body: object) : Promise<any> => {
+    public medianValidation = (body: object) : any => {
         const schema = Joi.object().keys({
-            name: Joi.string().required().label('Name')
+            number: Joi.number().required().label('Value').min(1)
         })
-        return schema.validateAsync(body)
+        return schema.validate(body)
     }
 }
 export const MedianValidations = new MedianValidation()

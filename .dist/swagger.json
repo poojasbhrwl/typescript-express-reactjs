@@ -1,0 +1,49 @@
+{
+    "swagger": "2.0",
+    "title": "APIS",
+    "description": "APIS",
+    "basePath": "/api",
+    "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "1.0.0",
+    "securityDefinitions": {
+        "basicAuth": {
+            "type": "basic"
+        }
+    },
+    "produces": ["application/json"],
+    "paths": {
+        "/": {
+            "post": {
+                "tags": ["Median"],
+                "summary": "Get median(s) of prime numbers of 0 to n number",
+                "parameters": [
+                    {
+                        "name": "median",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/median"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "median": {
+            "required": ["number"],
+            "properties": {
+                "number": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}
