@@ -42,15 +42,17 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome</h1>
+          <h3 className="App-title">Welcome</h3>
         </header>
-        <div>
-          <input type="number" onChange={this.setNumber} value={this.state.number}></input>
+        <div className='form-class'>
+          <p>Enter a number to find median of prime numbers</p>
+          <input type="number" onChange={this.setNumber} value={this.state.number} className='inputType'></input>
           {
             error.details && error.details.map((val) => {
               return <p className='error'>{val.message}</p>
             })
           }
+          <br></br>
           <button onClick={this.getResult}>Enter</button>
           {
             this.state.response && 

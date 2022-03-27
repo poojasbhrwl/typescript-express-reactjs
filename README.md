@@ -31,6 +31,12 @@ $ npm start
 
 ```
 
+To run test cases:
+
+```
+$ npm test
+
+```
 Find Api Documentation on 
 ``` 
 <URl>/api-docs

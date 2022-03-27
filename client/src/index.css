@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.form-class {
+  height: 100%;
+  padding: 30px
+}
+
+.inputType {
+  margin: 10px;
+    border: #ccc solid;
+    height: 30px;
+    width: 50%;
+}
+
+.form-class button {
+  width: 128px;
+  height: 35px;
+  color: #fff;
+  background: #7a929a;}
